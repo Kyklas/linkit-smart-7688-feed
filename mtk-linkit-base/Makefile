@@ -3,12 +3,12 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=mtk-linkit-base
+PKG_NAME:=mtk-base
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/mtk-linkit-base
+define Package/mtk-base
   TITLE:=MTK LinkIt Smart board support package
   DEPENDS:=@TARGET_ramips_mt7688_LinkIt7688 \
   	+avahi-nodbus-daemon +mountd +mjpg-streamer \
@@ -19,7 +19,8 @@ define Package/mtk-linkit-base
 	+kmod-nls-iso8859-15 +kmod-nls-iso8859-2 +kmod-nls-utf8 \
 	+kmod-sdhci-mt7620 +kmod-usb-storage \
 	+kmod-sound-core +kmod-sound-mtk +madplay-alsa +alsa-utils \
-	+mtk-sdk-wifi +iperf
+	+mtk-sdk-wifi +kmod-fs-ext4 +lsblk +blkid +e2fsprogs +cfdisk \
+	+lsusb
 
   CATEGORY:=Base system
   DEFAULT:=y
@@ -34,12 +35,11 @@ define Build/Compile
         $(TARGET_CC) $(TARGET_CFLAGS) $(EXTRA_CFLAGS) -Wall -Werror -o $(PKG_BUILD_DIR)/refclk src/refclk.c
 endef
 
-define Package/mtk-linkit-base/install
+define Package/mtk-base/install
 	$(INSTALL_DIR) $(1)/sbin
 	
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pinmux $(1)/sbin/mt7688_pinmux
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/refclk $(1)/sbin/mt7688_reclk
-	$(CP) ./files/* $(1)
 endef
 
-$(eval $(call BuildPackage,mtk-linkit-base))
+$(eval $(call BuildPackage,mtk-base))
