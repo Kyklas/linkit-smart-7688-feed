@@ -19,8 +19,8 @@ define Package/mtk-base
 	+kmod-nls-iso8859-15 +kmod-nls-iso8859-2 +kmod-nls-utf8 \
 	+kmod-sdhci-mt7620 +kmod-usb-storage \
 	+kmod-sound-core +kmod-sound-mtk +madplay-alsa +alsa-utils \
-	+mtk-sdk-wifi +kmod-fs-ext4 +lsblk +blkid +e2fsprogs +cfdisk \
-	+lsusb
+	+kmod-fs-ext4 +lsblk +blkid +e2fsprogs +cfdisk \
+	+usbutils
 
   CATEGORY:=Base system
   DEFAULT:=y
